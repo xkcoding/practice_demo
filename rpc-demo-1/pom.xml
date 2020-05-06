@@ -17,6 +17,7 @@
     <modules>
         <module>rpc-server-bio</module>
         <module>rpc-client-bio</module>
+        <module>rpc-common-bio</module>
     </modules>
 
     <name>rpc-demo-1</name>

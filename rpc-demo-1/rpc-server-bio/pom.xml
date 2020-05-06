@@ -15,7 +15,6 @@
     <modules>
         <module>rpc-server-bio-api</module>
         <module>rpc-server-bio-provider</module>
-        <module>rpc-server-bio-common</module>
     </modules>
 
     <name>rpc-server-bio</name>
