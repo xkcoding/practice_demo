@@ -21,7 +21,7 @@
     </modules>
 
     <name>rpc-demo-1</name>
-    <url>https://xkcoding.com</url>
+    <url>https://xkcoding.com/2020/04/20/how-to-design-your-own-rpc-framework-1.html</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
