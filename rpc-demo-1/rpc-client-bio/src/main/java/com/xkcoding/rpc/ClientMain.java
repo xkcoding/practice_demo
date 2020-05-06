@@ -8,7 +8,7 @@ package com.xkcoding.rpc;
  * @author yangkai.shen
  * @date Created in 2020-05-06 12:48
  */
-public class Main {
+public class ClientMain {
 
 	public static void main(String[] args) {
 		RpcClient rpcClient = new RpcClient();
