@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rpc-server-bio-common</artifactId>
+    <artifactId>rpc-common-bio</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>rpc-server-bio-common</name>
+    <name>rpc-common-bio</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

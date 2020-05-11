@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xkcoding.blog</groupId>
-            <artifactId>rpc-server-bio-common</artifactId>
+            <artifactId>rpc-common-bio</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
