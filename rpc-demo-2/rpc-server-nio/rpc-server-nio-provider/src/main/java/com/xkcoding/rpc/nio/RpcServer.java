@@ -31,7 +31,9 @@ public class RpcServer {
 					protected void initChannel(SocketChannel socketChannel) throws Exception {
 						socketChannel.pipeline()
 								.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)))
-								.addLast(new ObjectEncoder()).addLast(new RpcRequestServerHandler(service));
+								.addLast(new ObjectEncoder())
+								// 自定义处理器
+								.addLast(new RpcRequestServerHandler(service));
 					}
 				});
 

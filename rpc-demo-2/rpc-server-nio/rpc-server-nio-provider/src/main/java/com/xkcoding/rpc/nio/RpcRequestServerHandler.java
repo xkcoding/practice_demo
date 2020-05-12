@@ -23,6 +23,7 @@ public class RpcRequestServerHandler extends SimpleChannelInboundHandler<RpcRequ
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext channelHandlerContext, RpcRequest rpcRequest) throws Exception {
+		// 反射调用
 		Object invoke = invoke(rpcRequest);
 		channelHandlerContext.writeAndFlush(invoke).addListener(ChannelFutureListener.CLOSE);
 	}

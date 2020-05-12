@@ -24,34 +24,41 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RpcTransport {
 
-    private String host;
+	private String host;
 
-    private int port;
+	private int port;
 
-    public Object call(RpcRequest rpcRequest) {
-        Bootstrap bootstrap = new Bootstrap();
-        EventLoopGroup eventGroup = new NioEventLoopGroup();
+	public Object call(RpcRequest rpcRequest) {
+		Bootstrap bootstrap = new Bootstrap();
+		EventLoopGroup eventGroup = new NioEventLoopGroup();
 
-        RpcRequestClientHandler rpcRequestClientHandler = new RpcRequestClientHandler();
-        bootstrap.group(eventGroup).channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
-            @Override
-            protected void initChannel(SocketChannel socketChannel) throws Exception {
-                socketChannel.pipeline().addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null))).addLast(new ObjectEncoder()).addLast(rpcRequestClientHandler);
-            }
-        }).option(ChannelOption.TCP_NODELAY, true);
+		RpcRequestClientHandler rpcRequestClientHandler = new RpcRequestClientHandler();
+		bootstrap.group(eventGroup).channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
+			@Override
+			protected void initChannel(SocketChannel socketChannel) throws Exception {
+				socketChannel.pipeline()
+						.addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)))
+						.addLast(new ObjectEncoder())
+                        // 添加自定义处理器
+                        .addLast(rpcRequestClientHandler);
+			}
+		}).option(ChannelOption.TCP_NODELAY, true);
 
-        try {
-            ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-            // 发送 RPC 请求参数
-            channelFuture.channel().writeAndFlush(rpcRequest).sync();
-            // 等待连接关闭
-            channelFuture.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            eventGroup.shutdownGracefully();
-        }
+		try {
+			ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
+			// 发送 RPC 请求参数
+			channelFuture.channel().writeAndFlush(rpcRequest).sync();
+			// 等待连接关闭
+			channelFuture.channel().closeFuture().sync();
+		}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		finally {
+			eventGroup.shutdownGracefully();
+		}
 
-        return rpcRequestClientHandler.getResult();
-    }
+		return rpcRequestClientHandler.getResult();
+	}
+
 }
