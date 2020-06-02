@@ -38,7 +38,7 @@ public class RpcServerMessageProcessor implements MessageProcessor<byte[]> {
             // 反射调用
             Object invoke = invoke(rpcRequest);
 
-            // 写会客户端
+            // 写回客户端
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             objectOutput = new ObjectOutputStream(byteArrayOutputStream);
             objectOutput.writeObject(invoke);
