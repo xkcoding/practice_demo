@@ -28,6 +28,7 @@ public class RpcTransport {
     private int port;
 
     public Object call(RpcRequest rpcRequest) {
+        // 通过 CompletableFuture 阻塞获取返回结果
         CompletableFuture<Object> waitForResult = new CompletableFuture<>();
         RpcClientMessageProcessor messageProcessor = new RpcClientMessageProcessor(waitForResult);
         AioQuickClient<byte[]> consumer = new AioQuickClient<>(host, port, new RpcProtocol(), messageProcessor);
