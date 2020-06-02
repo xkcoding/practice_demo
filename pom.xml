@@ -11,6 +11,7 @@
     <modules>
         <module>rpc-demo-1</module>
         <module>rpc-demo-2</module>
+        <module>rpc-demo-3</module>
     </modules>
 
     <name>practice_demo</name>
