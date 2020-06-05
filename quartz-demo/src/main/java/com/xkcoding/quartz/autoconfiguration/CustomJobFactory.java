@@ -1,15 +1,10 @@
 package com.xkcoding.quartz.autoconfiguration;
 
-import lombok.SneakyThrows;
-import org.quartz.Job;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.spi.JobFactory;
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.quartz.AdaptableJobFactory;
 
 /**
  * <p>
@@ -20,21 +15,20 @@ import org.springframework.context.annotation.Configuration;
  * @date Created in 2020-06-05 11:35
  */
 @Configuration
-public class CustomJobFactory implements JobFactory {
+public class CustomJobFactory extends AdaptableJobFactory {
     @Autowired
     private AutowireCapableBeanFactory autowireCapableBeanFactory;
 
+    /**
+     * Create the job instance, populating it with property values taken
+     * from the scheduler context, job data map and trigger data map.
+     *
+     * @param bundle
+     */
     @Override
-    public Job newJob(TriggerFiredBundle triggerFiredBundle, Scheduler scheduler) throws SchedulerException {
-        return newJob(triggerFiredBundle);
-    }
-
-    @SneakyThrows
-    private Job newJob(TriggerFiredBundle triggerFiredBundle) {
-        JobDetail jobDetail = triggerFiredBundle.getJobDetail();
-        Class<? extends Job> jobClass = jobDetail.getJobClass();
-        Job job = jobClass.newInstance();
-        autowireCapableBeanFactory.autowireBean(job);
-        return job;
+    protected Object createJobInstance(TriggerFiredBundle bundle) throws Exception {
+        Object jobInstance = super.createJobInstance(bundle);
+        autowireCapableBeanFactory.autowireBean(jobInstance);
+        return jobInstance;
     }
 }
