@@ -12,7 +12,8 @@
         <module>rpc-demo-1</module>
         <module>rpc-demo-2</module>
         <module>rpc-demo-3</module>
-        <module>quartz-demo</module>
+        <module>quartz-demo-spring-boot</module>
+        <module>quartz-demo-spring</module>
     </modules>
 
     <name>practice_demo</name>

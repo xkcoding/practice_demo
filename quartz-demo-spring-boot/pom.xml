@@ -10,11 +10,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>quartz-demo</artifactId>
+    <artifactId>quartz-demo-spring-boot</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
-    <name>quartz-demo</name>
+    <name>quartz-demo-spring-boot</name>
     <url>https://xkcoding.com/2020/06/05/fix-quartz-job-cannot-autowired-spring-beans.html</url>
 
     <properties>

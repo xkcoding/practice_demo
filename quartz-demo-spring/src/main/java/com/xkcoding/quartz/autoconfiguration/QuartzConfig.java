@@ -23,7 +23,7 @@ public class QuartzConfig {
 
     @SneakyThrows
     @Bean
-    public Scheduler scheduler(){
+    public Scheduler scheduler() {
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();
         Scheduler scheduler = schedulerFactory.getScheduler();
         // 自定义 JobFactory 使得在 Quartz Job 中可以使用 @Autowired
