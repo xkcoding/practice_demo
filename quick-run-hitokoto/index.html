@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=100, initial-scale=1.0" />
+    <title>一言</title>
+  </head>
+  <body>
+    <p
+      id="hitokoto"
+      style="
+        text-align: center;
+        border: 2px dashed black;
+        padding: 10%;
+        font-weight: 600;
+      "
+    >
+      :D 获取中...
+    </p>
+  </body>
+  <script>
+    fetch("http://localhost/api")
+      .then((response) => response.json())
+      .then((data) => {
+        const hitokoto = document.getElementById("hitokoto");
+        let from;
+        switch (data.type) {
+          case "a":
+            from = `《${data.from}》//动画`;
+            break;
+          case "b":
+            from = `《${data.from}》//漫画`;
+            break;
+          case "g":
+            from = `《${data.from}》//其他`;
+            break;
+          case "h":
+            from = `《${data.from}》//影视`;
+            break;
+          case "i":
+            from = `《${data.from}》//诗词`;
+            break;
+          case "k":
+            from = `《${data.from}》//哲学`;
+            break;
+          case "d":
+            from = `《${data.from}》//文学`;
+            break;
+          case "e":
+            from = `「${data.from}」//原创`;
+            break;
+          case "c":
+            from = `「${data.from}」//游戏`;
+            break;
+          case "f":
+            from = `「${data.from}」//来自网络`;
+            break;
+          case "j":
+            from = `「${data.from}」//网易云`;
+            break;
+          case "l":
+            from = `「${data.from}」//抖机灵`;
+            break;
+          default:
+            from = `「${data.from}」//其他`;
+            break;
+        }
+        hitokoto.innerText = `${data.hitokoto} —— ${from}`;
+      })
+      .catch(console.error);
+  </script>
+</html>

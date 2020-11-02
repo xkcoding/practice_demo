@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  hitokoto_db:
+    image: redis:6.0.8
+  hitokoto_api:
+    image: hitokoto/api
+    depends_on:
+      - hitokoto_db
+    volumes:
+      - ./config.yml:/usr/src/app/data/config.yml:rw
+      - ./data:/usr/src/app/data:rw
+  nginx:
+    image: nginx:1.18.0
+    ports:
+      - 80:80
+    depends_on:
+      - hitokoto_api
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./index.html:/usr/share/nginx/html/index.html
