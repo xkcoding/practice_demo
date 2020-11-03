@@ -8,8 +8,7 @@ services:
     depends_on:
       - hitokoto_db
     volumes:
-      - ./config.yml:/usr/src/app/data/config.yml:rw
-      - ./data:/usr/src/app/data:rw
+      - ./config.yml:/usr/src/app/data/config.yml:ro
   nginx:
     image: nginx:1.18.0
     ports:
