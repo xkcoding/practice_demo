@@ -15,6 +15,7 @@
         <module>quartz-demo-spring-boot</module>
         <module>quartz-demo-spring</module>
         <module>strategy-design-pattern-in-spring</module>
+        <module>lombok-with-mapstruct</module>
     </modules>
 
     <name>practice_demo</name>
